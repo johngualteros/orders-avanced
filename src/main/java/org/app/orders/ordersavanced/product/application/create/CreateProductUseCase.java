@@ -17,12 +17,14 @@ public class CreateProductUseCase {
         this.repository = repository;
     }
 
-    public void execute(PersistenceProduct persistenceProduct) {
+    public PersistenceProduct execute(PersistenceProduct persistenceProduct) {
         try {
             repository.save(persistenceProduct);
             log.info("Product created: {}", persistenceProduct.toString());
+            return persistenceProduct;
         } catch (Exception e) {
             log.error("Error creating product: {}", e.getMessage());
         }
+        return null;
     }
 }
